@@ -4,7 +4,10 @@ node {
     checkout scm
     stage('Build') {
      //   docker.image('maven:3.3.3').inside {
-            sh 'mvn --version'
+             withMaven(
+                 maven: 'maven_3.5.4', mavenLocalRepo: '/maven/repo') {
+                sh 'mvn clean compile'
+              }
      //   }
     }
 }
